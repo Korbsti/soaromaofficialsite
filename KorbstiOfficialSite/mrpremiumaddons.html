@@ -1,0 +1,471 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, inital-scale=1">
+    <title>Soaroma Official</title>
+    <meta name="description" content="Water">
+    <meta name="robots" content="noindex, nofollow">
+
+
+    <!-- add google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,500;0,700;1,400&amp;display=swap" rel="stylesheet">
+
+
+    <!--Link up CSS and Javascript files-->
+    <link rel="stylesheet" href="./css/mrpremiumaddons.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./javascript/footerandheader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css">
+    <link rel="icon" href="./imgs/homepage/logo.png" type="image/icontype"> 
+</head>
+<header id="header"></header>
+<body>
+    <div class="mainpage">
+        <div class="background">
+        </div>
+        <div>
+            <h1>MRPremiumAddons Wiki</h1>
+            <div class="dropdown">
+                <ul><a href="./mythicalraces.html">Mythical Races Wiki</a></ul>
+                <ul><a href="./soaromasac.html">SoaromaSAC Wiki</a></ul>
+                <ul><a href="./index.html">Homepage</a></ul>
+                <ul><a href="https://ko-fi.com/korbsti">Donations</a></ul>
+                <ul><a href="https://www.youtube.com/channel/UCSgrqMXHaXPE1rV3s1geD-g">Youtube</a></ul>
+                <ul><a href="https://discord.gg/GK3rmrze2Q">Discord</a></ul>
+                <ul><a href="https://discord.com/api/oauth2/authorize?client_id=1023272141501767792&permissions=2048&scope=bot%20applications.commands">Matchmaker Bot</a></ul>
+
+            </div>
+        </div>
+        <div class="blackbars"></div>
+    </div>
+
+    <section class="information">
+        <div class="bar"><p></p></div>
+        <div class="allinformation">
+            <div>
+                <h1>MRPremiumAddons Wiki</h1>
+                <p>This is for the mythical races premium addon</p>
+            </div>
+            <div>
+                <h3>Beginning</h3>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Db8Np5u0EJM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>                <p>Do note that the video above is slightly outdated</p>
+                <p style="white-space: pre-line;">You can think of 'abilities' as command executors with a specific set of rules to follow, and to make up these abilities we can think of each 'part' of the creation of an ability like a component,
+ its not as hard as it seems so think of it in sections and remember the rules
+Remember you will need this wiki as WELL as the comments inside the config files, its better to read throughout the comments first and then start here
+
+In each ability, the placeholders will *always* be the same throughout each ability with some case exceptions
+{name} - The players name of who *executes* the ability, reality console executes it but if its from the players ability list {name} will always be the person who executed the abilities name
+
+{hitPlayer} - This will only be another players name inside a ability *if* the ability itself targets another player, for example using CUSTOM[num] *can* target nearby players with {hitPlayer} being the placeholder, {hitPlayer} will NEVER be the person who executed the abilities name 
+
+{x} {y} {z} - these are special types of co-ords for specific ability events/types, for example CUSTOM[num], any raytrace, hit another entity event, uses this {x} {y} {z}, what this means is that it will take the co-ords of the *hit* entity coords and put them through the command list, {x} {y} {z} will run multiple times on each entity that was hit by the event,
+ for example CUSTOM[num] would run the command multiple times at different locations of entities within the radius.
+ This could also be the case for raytrace and all the coords the raytrace hits, {x} {y} {z}
+
+There is also {[mathX+num]} {[mathY+num]} {[mathZ-num]}
+Which takes {x} {y} or {z} and adds or subtracts a number to it, for example if you wanted to add 1 to the {x} co-ord you would do {[mathX+1]}
+
+Let us look a bit more into special placeholders that replace {x} {y] {z}
+We can replace them with {[mathX+100]}, what this will do is, add 100 to the players X coords
+We can replace them with {[mathY-10]}, what this will do is, subtract 10 to the players Y coords
+We can replace them with {[mathZ*3]}, what this will do is, multiple 3 to the players Z coords
+We can also do something like this {[mathZ/2]}, what this will do is, divide the players Z coords by 2
+Do note that you can only do one math operation per placeholder, so you can't do {[mathZ/2+100]}, you can only do one math operation per placeholder
+
+
+These links below you WILL need
+https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Biome.html
+https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html
+https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+                
+
+----------------------------------------------------------------------
+<!--Add a span and a text with a font size of larger-->
+<span ><h3>Custom Ability Basics</h3></span>
+</p>
+<p style="white-space: pre-line;">
+
+Each 'ability' has components to them which was said before, each ability takes a common amount of arguments inside of it seperated by four equal signs,
+ for example 'blah====blah====blah', you can think of each new '====' as a seperator for the ability which tells the plugin its a new component to look for
+<pre>
+ <code class="yml">
+CUSTOMABILITY====MATERIAL===={commands}====10===={miliseconds}===={self}===={target}===={event type}
+the first argument which is CUSTOMABILITY, represents that you're telling the plugin hey its a custom ability and now do a bunch of stuff
+the second argument is the MATERIAL of what can be executed/interacted with/ a lot of times this will be ignored if not in certain event types at the end of the arguments
+the third argument is the COMMAND to execute when the conditions are met
+{x} = players X coords | or the entitys coords if the sixth argument is CUSTOM
+{z} = players Z coords | or the entitys coords if the sixth argument is CUSTOM
+{y} = players y coords | or the entitys coords if the sixth argument is CUSTOM
+{hitPlayer} = hit enemy player name
+{name} = players name
+the fourth argument is the CHANCE this occurs, so for example 10 is a 10% chance of it occuring
+the fifth argument is the TIME limit for it to happen again, so 1000 = 1 second, so every 1 second this player can use this ability again
+the sixth argment can either CUSTOM[num] or SELF, this means apply command to SELF OR apply to nearby entities
+the seventh argument means the TARGET of what can be done for the sixth entity, this never applies to the player themselves, this can be either ALL, PLAYERS, MOB, ANIMALS
+the eighth argument is the event type on when to apply these 'effects'
+the eighth argument can either be
+RIGHTCLICKBLOCK {replace material for what block needs to be right clicked}
+RIGHTCLICKAIR {replace material for what block needs to be right clicked}
+LEFTCLICKBLOCK {replace material for what block needs to be left clicked}
+LEFTCLICKAIR {replace material for what block needs to be left clicked}
+BLOCKBREAK {replace material for what block needs to be destroyed}
+  BLOCKPLACE {replace material for what block needs to be placed}
+  RIGHTCLICKAIRCONSUME {replace material for what needs to be right clicked} - consume item and then execute command
+  LEFTCLICKAIRCONSUME {replace material for what needs to be right clicked} - consume item and then execute command
+ENTERBED
+SLEEPING
+EXITBED
+  EXITVEHICLE
+  ENTERVEHICLE
+WORLDCHANGEEVENT
+  COMBUSTEVENT
+  EXPLODEEVENT
+  ISSWIMMINGEVENT
+  ISFLYINGEVENT
+  ISFALLINGEVENT
+  COMBUSTEVENT
+  BLOCKEXPLOSIONEVENT
+  ENTITYEXPLOSIONEVENT
+  CRAMMINGEVENT
+  FALLDAMAGEEVENT
+  FIREHURTEVENT
+  SUFFOCATIONHURTEVENT
+  PLAYERRESPAWN
+  ISSLEEPING
+  DAMAGECAUSEEVENTCANCEL {replace material for what damage cause needs to be cancelled and then command to be executed}
+  HOLDINGITEM {replace material of what item the player needs to hold for it to execute}
+  HOLDITEM {difference between HOLDINGITEM and HOLDITEM is, HOLDITEM only executes the ability once when the item is held, while HOLDINGITEM applies consisently on a timer}
+  HASPOTIONTYPE {Replace material with the type of potion effect, please note that this depends on timerCheckingPotionEffects, if this number is set to 1 then it will instantly detect a potion effect
+                if its not 1 then it wont instantly detect the potion effect}
+  DAMAGECAUSEEVENT {Replace material with the damage cause, damage cause can be found here -> https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/entity/EntityDamageEvent.DamageCause.html}
+  PLAYERKILLENTITY {player kills an entity, replace material with the entity type}
+  ISSNEAKING
+  DEATHEVENTCANCEL {if player died then cancel event and execute commands}
+  DEATHEVENT {if player died and execute commands}
+  CHATWHISPEREVENT {replace material as the players message needed to trigger} this means if correct word is said, CANCEL the event BUT execute the command (so it doesnt clutter chat up)
+  CHATLOUDEVENT {replace material as the players message needed to trigger} this means execute command if the correct word was said BUT the message will still be said in chat
+  PLAYERCONSUMEEVENT {replaces the materials argument with your own item of consumed item name}
+You may use as many abilities as you want per race or class, each one can be unique
+</code>
+                </pre>
+                </p>
+                <p style="white-space: pre-line;">
+
+Common components throughout all the abilites are as follows, these are common with CUSTOMABILITY and a few others
+
+Type of ability
+Event
+Material
+Command
+Chance of occurring
+Cooldown of TRYING the ability
+Target self or nearby entities
+Target types IF the 'Target self or nearby entities' was selected to target nearby entities
+
+Now to explain what these do and what you are telling the plugin
+Type of ability - This signals the plugin what *type* of ability this is going to be, for example is it a CUSTOMABILITY, or INFLICTDAMAGEEVENT or something else, in this case we are going to use CUSTOMABILITY which is one of the most commonly used abilities
+
+Event - This signals when to FIRE a custom ability, BUT only fire if it matches a certain criteria, which is the MATERIAL, I will explain below
+
+Material - This will only apply IF its certain events where the EVENT could have a range of "sub-events" inside of it, for example lets take RIGHTCLICKBLOCK, here we have to specify *what* block we want to be right clicked on to execute the command
+
+Command - A command of your choosing with the global placeholders stated above
+
+Chance of occurance - What % of chance the command has a chance of occuring if Event and material conditions have been met, range goes from 0% to 100%
+
+Cooldown of TRYING the ability - This means how many miliseconds the player has to TRY to trigger the chance of occurance, this doesnt mean if the player successfully triggered the % and then set a cooldown, but just triggering the event and material does the cooldown occur
+
+Target self or nearby entities - This means if the conditions are met, target the player themselves or nearby entities, this can either be SELF or CUSTOM[num]
+
+Target types IF the 'Target self or nearby entities' - IF CUSTOM[num] was selected, then execute command for every nearby entity in [num] blocks, example it could look like CUSTOM10 for 10 nearby block search radius
+
+So now that we know this lets make a ability, a simple one with CUSTOMABILITY, where we right click a diamond in the air and it will heal the player with a 10 milisecond cooldown but 50% chance of happening, and consume the diamond
+
+[Type of ability]====[Material]====[Command]====[Chance of occurance]====[Cooldown]====[Target self or nearby entities]====[Target types IF etc]====[Event]
+
+This would look like this
+</p>
+<pre><code class="yml">CUSTOMABILITY====DIAMOND====execute at {name} run effect give {name} regeneration 10 10====50====10====SELF====ALL====RIGHTCLICKAIRCONSUME</code></pre>
+<p style="white-space: pre-line;">
+
+There are times you will not need [Material] with some events, so you could just put 'placeholder' in its place instead of 'DIAMOND'
+
+Lets create another ability, this time we will create a aura regeneration field IF the player enters a bed
+<pre><code class="yml">CUSTOMABILITY====placeholder====execute at {name} run effect give @e[sort=nearest,x={x},y={y},z={z},limit=1] minecraft:regeneration 3 10====100====10====CUSTOM5====ALL====ENTERBED</code></pre>
+</p>    
+<p style="white-space: pre-line;">
+This will heal any nearby entities within 5 blocks of the player, except the player themselves 
+
+Now you may be wondering why 'execute at {name}' is within the command, this is so it defines WHERE to execute the command in what world, but remember this is ONLY for vanilla commands, not plugin commands
+
+These are the basics of the basics, we will learn to make these more advanced later
+
+----------------------------------------------------------------------
+
+Now lets take a break from the CUSTOMABILITY, we will talk about that more later and move onto the more simple and easy to understand types of abilities 
+
+Lets take a look at some of these 'Types of abilities'
+</p>
+<pre>
+<code class="yml">
+INFLICTDAMAGEEVENT====[command]====[chance]====[cooldown]
+
+- If the player inflicted some damage on an entity, [{x} {y} {z} applies to the enemy who was hit]
+    
+RECIEVEDAMAGEFROMENTITY====[command]====[chance]====[cooldown]
+- If the player recieved some damage from an entity, [{x} {y} {z} applies to the enemy who hit the player]
+    
+LEVELUP====[command]
+OR it could look like this LEVELUP====[command]====[level needed to execute command]
+- Meaning if the player has leveled up in a their race execute X command
+It could look like this
+- LEVELUP====say wow look {name} levelled up
+- LEVELUP====say Wow look {name} levelled up at 10?!?!====10
+    
+    
+FRIENDLYMOBS====[MOBNAME,MOBNAME,etc]
+- Meaning make X mob friendly and not attack the player
+- Takes an EntityType
+Could look like this
+FRIENDLYMOBS====ZOMBIE,WITCH
+    
+PROJECTILEEVENT====[Material/Projectile]====[command]====[chance]====[cooldown]
+- Takes an EntityType as Material/Projectile
+    
+
+
+All of the below up to IMMUNETOX can be seperated by commas within [material]
+RESTRICTARMOR====[material] - This means the player cannot wear a certain piece of X armor
+
+RESTRICTWEAPON====[material] - This means a player cannot deal any damage with X weapon
+
+RESTRICTTOOL===[material] - Player cannot use a certain tool, this can be either a pickaxe, shovel, etc, but only for DESTROYING blocks
+
+IMMUNETOX====[potion effect type] - This means if the player is going to be immune to X potion effect - this is dependant on the config option 'timerCheckingPotionEffects', meaning check and remove potion effect every X amount of ticks from timerCheckingPotionEffects
+
+###
+
+EXTRADMG====RACE/CLASS====[num] - This means deal extra damage to another certain race or class with [num] being the extra amount of damage dealt
+Example being -> 'EXTRADMG====Cat====3.0' does 3 extra damage to the Cat race
+
+Another ability is
+INFLICTDAMAGEEVENT====say hello====10====10000
+When a player damages another entity or player
+{x} = enemys X coords
+{y} = enemys Y coords 
+{z} = enemys Z coords 
+{hitPlayer} = hit enemy player name
+{name} = players name
+first argument is stating what the plugin should do with the line
+second argument is the command
+third argument is chance, so 10 is 10% chance
+fourth argument is cooldown time, 1000 = 1 second
+
+When a player recieves damage from an entity
+RECIEVEDAMAGEFROMENTITY====say hello====10====10000
+{x} = enemys X coords
+{y} = enemys Y coords 
+{z} = enemys Z coords 
+{hitPlayer} = hit enemy player name
+{name} = players name
+first argument is stating what the plugin should do with the line
+second argument is the command
+third argument is chance, so 10 is 10% chance
+fourth argument is cooldown time, 1000 = 1 second
+
+You can also do this
+LEVELUP===={command}
+OR it could look like this LEVELUP===={command}===={level needed to execute command}
+Meaning if the player has leveled up in a their race execute X command
+
+FRIENDLYMOBS====MOBNAME,MOBNAME,MOBNAME
+second arguments seperated by commas are telling the plugin which mobs are friendly to the player itself and the mobs wont attack them at all
+
+PROJECTILEEVENT====ARROW====say hello====10====10000
+When a player damages another entity or player
+{x} = enemys X coords
+{y} = enemys Y coords 
+{z} = enemys Z coords 
+{hitPlayer} = hit enemy player name
+{name} = players name
+first argument is stating what the plugin should do with the line
+second argument is what the projectile should be to hit the enemy entity or player
+third argument is chance, so 10 is 10% chance
+fourth argument is cooldown time, 1000 = 1 second
+
+</code>
+</pre>
+<p>----------------------------------------------------------------------</p>
+<h3>Back onto the custom abilities</h3>
+<p style="white-space: pre-line;">
+LEFTCLICKAIR, RIGHTCLICKAIRCONSUME, RIGHTCLICKAIR, HOLDINGITEM, and the ray trace special types
+can use custom model ID inside the {material}
+                for example 
+</p>
+<pre><code class="yml"> - 'CUSTOMABILITY====123:,IRON_INGOT,412:====say hey i executed====100====10====SELF====ALL====RIGHTCLICKAIR'</code></pre>
+<p style="white-space: pre-line">
+                By putting a number with a colon to the right of it will indicate to the plugin that it is looking for a custom model ID instead of a material
+                So it will check if the item right-clicked has a custom model id of 123, or 412 or an iron ingot
+                This is useful for servers that have more specific RPG components that want to have special types of items to be executed
+
+                For example to test that out you can use this command to give you an item
+                /give @s minecraft:feather{CustomModelData:123}
+                This will give you a feather with a custom model id of 123
+                </p>
+                <p style="white-space: pre-line;">
+                Now lets get onto something a tad more complicated for custom abilities and making
+                the "ability" look nice when executing it
+
+                That means particle effects!
+
+                Inside the {self} you know it can either be SELF or CUSTOM
+
+                Self being the player and CUSTOM[num] being surrounding entities
+
+                With this template
+                SELF/CUSTOM[num]:PARTICLEEFFECT:LENGTH:SPACING:INSTANT/MEDIUM/FAST/SLOW:TYPE
+
+                PARTICLEEFFECT is the particle effect to be used
+                Particle effects can be split using a comma
+                From this site https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html
+                Length being the "size" of the shape and "spacing" being the spacing number between each particle of the shape
+                INSTANT/MEDIUM/FAST/SLOW define on when to display the particles at a set speed
+                the TYPE can be one of these
+                CONE, REVERSECONE, CUBE, SPIRAL, RANDOMDOTS, 4CIRCLES, CIRCLE, INNERCIRCLES, OUTCIRCLES, TRIPLELINE, CROSS, UPWARDCIRCLES, ALIENSPHERE
+
+                This youtube video can help you set up these new particle effects
+                </p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/zVY-RAYlLUY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p style="white-space: pre-line;">
+here is an example to use a particle effect with a custom ability from the ability above, to make a cross particle effect of ash, with a length of 10, spacing of 0.4 for each particle from eachother, and a speed of fast
+</p>
+                <pre><code class="yml"> - 'CUSTOMABILITY====123:,IRON_INGOT,412:====say hey i executed====100====10====SELF:ASH:10:0.4:FAST:CROSS====ALL====RIGHTCLICKAIR'</code></pre>
+                <p style="white-space: pre-line;">
+Remember this! This plugin is INCREDIBLY customizable,
+ but remember that there are an absolute TON of vanilla minecraft commands that will most likely suit your needs, you just have to look for them! Even checking for blocks in a certain pattern nearby the player can be done with
+  vanilla minecraft commands! This is what makes this plugin so powerful with its customizability!
+                </p>
+                <h3>That should be all with custom ability, lets get onto the ray tracing abilities and some special custom ability types</h3>
+                <pre><code class="yml">Some special cases of 'CUSTOM' ability can be this
+
+Let us dive into another feature ability for CHATWHISPEREVENT and CHATLOUDEVENT
+These two abilities have the means to take placeholders from the player and insert them into the command
+For example
+CUSTOMABILITY====Server repeat me! {0};====say {0} was said ====100====10====SELF====ALL====CHATLOUDEVENT
+If the player types 'Server repeat me! test' in chat
+then the following command will be used
+'say test was said'
+You can use up to 5 placeholders ranging from {0} to {5}
+Don't forget to put a semicolon at the end to indicate to the plugin you are using player placeholders
+
+                    
+CUSTOMABILITY====MATERIAL===={command}===={chance}===={miliseconds}===={self}===={target}===={event type}====REPEATING===={repeating timer}===={ending command}
+Repeating means - Repeat {command} every '{repeating timer}' ticks, and if the player triggers the event again, the timer will end and the {ending command} will be executed
+
+CUSTOMABILITY====MATERIAL===={command}===={chance}===={miliseconds}===={self}===={target}===={event type}====ONCE===={ending command}
+This means if the event was triggered, then do "{command}", if the event is triggered again then {ending command} is triggered
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL===={event type}===={latercommand}===={timing}
+Means if event is triggered then do command, after {timing} which is in ticks, execute {latercommand}
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====RIGHTCLICKAIRRAYTRACE===={distance}
+Means if the player is looking at an entity while right clicking MATERIAL, within distance {distance} then do command for entity, note {x} {y} and {z} would be the entity coords
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====RIGHTCLICKAIRRAYTRACEBLOCK===={distance}
+Means if the player is looking at an entity while right clicking MATERIAL, within distance {distance} then do command for entity, note {x} {y} and {z} would be the entity coords
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====RIGHTCLICKAIRRAYTRACELOCATION===={distance}
+Meaning execute commands, along the coords between the player and the entity that it passes through {x} {y} {z}
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====RIGHTCLICKAIRRAYTRACELOCATIONBLOCK===={distance}
+Meaning execute commands, along the coords between the player and the entity that it passes through {x} {y} {z}
+And it will stop once it hits a SOLID block
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====LEFTCLICKAIRRAYTRACE===={distance}
+Means if the player is looking at an entity while right clicking MATERIAL, within distance {distance} then do command for entity, note {x} {y} and {z} would be the entity coords
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====LEFTCLICKAIRRAYTRACEBLOCK===={distance}
+Means if the player is looking at an entity while right clicking MATERIAL, within distance {distance} then do command for entity, note {x} {y} and {z} would be the entity coords
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====LEFTCLICKAIRRAYTRACELOCATION===={distance}
+Meaning execute commands, along the coords between the player and the entity that it passes through {x} {y} {z}
+
+CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====LEFTCLICKAIRRAYTRACELOCATIONBLOCK===={distance}
+Meaning execute commands, along the coords between the player and the entity that it passes through {x} {y} {z}
+And it will stop once it hits a SOLID block
+</code></pre>
+<h3>A few final addons onto the abilities!</h3>
+<p style="white-space: pre-line;">
+Now heres a very important detail, so
+YOU COULD do this at the end of each CUSTOM ABILITY/projectile data
+[ability]===={message}===={type}====NOTIFY
+{cooldown} is the cooldown
+{type} can either be HOTBAR/ACTIONBAR/MESSAGE
+this is what is sent to the player
+    
+We also have another feature for the FIRST word of the events
+Example, PROJECTILEEVENT,FRIENDLYMOBS etc
+If you do "CUSTOMABILITY;10==== rest of the ability"
+This will mean, the player has to be level 10 or above for this specific ability to execute with its events
+    
+</p>
+
+<pre><code class="yml">
+
+Some helpful commands
+execute at {name} run effect give @e[sort=nearest,x={x},y={y},z={z},limit=1] minecraft:poison 3 10
+An example of some 'Abilities'
+CUSTOMABILITY====GRASS_BLOCK====heal {name}====100====10====CUSTOM5====ALL====RIGHTCLICKAIR
+This means on RIGHT click in the air, with the item grass block in the hand
+CUSTOMABILITY====SALMON====say {name}====100====10====SELF====ALL====RIGHTCLICKAIR====REPEATING====30====say ending
+INFLICTDAMAGEEVENT====execute at {name} run effect give @e[sort=nearest,x={x},y={y},z={z},limit=1] minecraft:poison 3 10====100====10000
+PROJECTILEEVENT====ARROW====execute at {name} run effect give @e[sort=nearest,x={x},y={y},z={z},limit=1] minecraft:poison 3 10====100====10000
+If the player shoots a projectile and its called "ARROW" then give the entity that was hit poison with a 10 second cooldown TRY timer
+FRIENDLYMOBS====WITCH,ZOMBIE | Meaning the entities, "witch and zombie" are friendly towards the player
+CUSTOMABILITY====STRING====effect give {name} minecraft:invisibility 60 0====100====5000====SELF====ALL====RIGHTCLICKAIR====REPEATING====100====effect clear {name} | meaning give player invis every 5 seconds when they right click string
+if they right click it again then disable the giving of invis and clear all effects of the player
+please note that the miliseconds mean every X miliseconds then TRY again, not if the command was successful
+</code></pre>
+
+<h3>Now lets look at something a little more similar to the base mythical races</h3>
+<pre><code class="yml">
+dayRaceCommandExecution:
+    - 'null'
+ dayRaceCommandExecutionData:
+    - 'null'
+ nightRaceCommandExecution:
+    - 'null'
+ nightRaceCommandExecutionData:
+    - 'null'</code></pre>
+    <p style="white-space: pre-line;">
+        What we have above is the command execution for the day and night, this is what is executed when the player is in the day or night or near a certain block or anything to do with the base MR data setters
+        The "data" aka the dayRaceCommandExecutionData is exactly the same as the ones in the Base MR config, so you can check that out inside the MythicalRaces Wiki
+
+        the dayRaceCommandExecution is the command that is executed when the player is in the day, and the nightRaceCommandExecution is the command that is executed when the player is in the night
+
+        Compared to the rest of this page, this ability uses {player} instead of {name} as the player name and {x} {y} {z} stay the same as the rest of the page 
+    </p>
+            </div>
+        </div>  
+    </section>
+
+
+    <footer class="footer">
+        <div>
+            <p>Soaroma Official</p>
+            <p>Hey there! Its me Korbsti, thanks for reading, if you require any assistance join my discord server at the top!</p>
+            <!--Copy right-->
+            <p>© 2022 Soaroma Official. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    
+</body>
+
+</html>
