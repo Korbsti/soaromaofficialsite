@@ -121,20 +121,3 @@ body{
 
     
 }
-
-@media screen and (max-width: 568px) {
-    /* Split dropdown into 2 seperate columns*/
-
-    .mainpage > :nth-child(2)  {
-        font-size: 50px;
-        top: 0%;
-        height: 100vh;
-    }
-    .mainpage > :nth-child(2) > h1 {
-        font-size: 50px;
-        top: 3%;
-    }
-    .mainpage > :nth-child(2) > :nth-child(2)  {
-        font-size: 15px;
-    }
-}
