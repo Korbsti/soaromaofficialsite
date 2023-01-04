@@ -16,17 +16,16 @@ body{
     margin: 0;
 }
 
-
 .mainpage > .inner {
     position: absolute;
     top: 30%;
+    width:100%;
     height: auto;
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
-    width: 100%;
 }
 
-.mainpage > .inner > h1 {
+.mainpage > :nth-child(2) > h1 {
     position: absolute;
     font-size: 50px;
     left: 50%;
@@ -45,7 +44,7 @@ body{
     padding-top: 10%;
 }
 
-.mainpage > .inner > .dropdown > ul > a {
+.mainpage > :nth-child(2) > :nth-child(2) > ul > a {
     font-size: 20px;
     font-family: 'Roboto', sans-serif;
     color: white;
@@ -68,67 +67,38 @@ body{
     max-width: 800px;
     margin: 0 auto;
   }
+  
   .dropdown ul {
     flex: 1 1 auto;
   }
 
-
-  .allinformation {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-h1, h2, h3 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-}
-
-p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background: #333;
-    margin: 30px 0;
-}
-
-.dropdown ul {
-    margin: 10px 0;
-}
-
-.footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-    clear: both;
+  .information {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;   
+    padding-top: 2%;
   }
   
-  .footer a {
-    color: white;
-    text-decoration: none;
+  .container-information {
+    background-color: #f8f8f8;
+    border-radius: 5px;
+    padding: 20px;
   }
   
-  .footer ul {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
+  .container-information h3 {
+    margin-top: 0;
   }
   
-  .footer li {
-    margin: 10px;
+  .container-information a {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
   }
   
-  .footer p {
-    margin: 10px;
+  .container-information a:hover {
+    color: #0077c9;
   }
-
 
 @keyframes fadeIn {
     0% { opacity: 0; }
@@ -138,13 +108,13 @@ hr {
 @media screen and (max-width: 1430px) {
     /* Split dropdown into 2 seperate columns*/
 
-    .mainpage > .inner  {
+    .mainpage > :nth-child(2)  {
         font-size: 50px;
         top: 0%;
         height: 100vh;
         width: 100%;
     }
-    .mainpage > .inner > h1 {
+    .mainpage > :nth-child(2) > h1 {
         font-size: 50px;
         top: 5%;
     }
@@ -155,16 +125,16 @@ hr {
 @media screen and (max-width: 568px) {
     /* Split dropdown into 2 seperate columns*/
 
-    .mainpage > .inner  {
+    .mainpage > :nth-child(2)  {
         font-size: 50px;
         top: 0%;
         height: 100vh;
     }
-    .mainpage > .inner > h1 {
+    .mainpage > :nth-child(2) > h1 {
         font-size: 50px;
         top: 3%;
     }
-    .mainpage > .inner > .dropdown  {
+    .mainpage > :nth-child(2) > :nth-child(2)  {
         font-size: 15px;
     }
 }
