@@ -111,20 +111,20 @@ the sixth argment can either CUSTOM[num] or SELF, this means apply command to SE
 the seventh argument means the TARGET of what can be done for the sixth entity, this never applies to the player themselves, this can be either ALL, PLAYERS, MOB, ANIMALS
 the eighth argument is the event type on when to apply these 'effects'
 the eighth argument can either be
-RIGHTCLICKBLOCK {replace material for what block needs to be right clicked}
-RIGHTCLICKAIR {replace material for what block needs to be right clicked}
-LEFTCLICKBLOCK {replace material for what block needs to be left clicked}
-LEFTCLICKAIR {replace material for what block needs to be left clicked}
-BLOCKBREAK {replace material for what block needs to be destroyed}
+  RIGHTCLICKBLOCK {replace material for what block needs to be right clicked}
+  RIGHTCLICKAIR {replace material for what block needs to be right clicked}
+  LEFTCLICKBLOCK {replace material for what block needs to be left clicked}
+  LEFTCLICKAIR {replace material for what block needs to be left clicked}
+  BLOCKBREAK {replace material for what block needs to be destroyed}
   BLOCKPLACE {replace material for what block needs to be placed}
   RIGHTCLICKAIRCONSUME {replace material for what needs to be right clicked} - consume item and then execute command
   LEFTCLICKAIRCONSUME {replace material for what needs to be right clicked} - consume item and then execute command
-ENTERBED
-SLEEPING
-EXITBED
+  ENTERBED
+  SLEEPING
+  EXITBED
   EXITVEHICLE
   ENTERVEHICLE
-WORLDCHANGEEVENT
+  WORLDCHANGEEVENT
   COMBUSTEVENT
   EXPLODEEVENT
   ISSWIMMINGEVENT
@@ -139,6 +139,9 @@ WORLDCHANGEEVENT
   SUFFOCATIONHURTEVENT
   PLAYERRESPAWN
   ISSLEEPING
+  ISBLOCKING
+  ISSPRINTING
+  ISCLIMBING
   DAMAGECAUSEEVENTCANCEL {replace material for what damage cause needs to be cancelled and then command to be executed}
   HOLDINGITEM {replace material of what item the player needs to hold for it to execute}
   HOLDITEM {difference between HOLDINGITEM and HOLDITEM is, HOLDITEM only executes the ability once when the item is held, while HOLDINGITEM applies consisently on a timer}
@@ -217,7 +220,7 @@ Lets take a look at some of these 'Types of abilities'
 <code class="yml">
 INFLICTDAMAGEEVENT====[command]====[chance]====[cooldown]
 
-- If the player inflicted some damage on an entity, [{x} {y} {z} applies to the enemy who was hit]
+- If the player inflicted some damage on an entity, [{x} {y} {z}, same with {hitUUID} applies to the enemy who was hit]
     
 RECIEVEDAMAGEFROMENTITY====[command]====[chance]====[cooldown]
 - If the player recieved some damage from an entity, [{x} {y} {z} applies to the enemy who hit the player]
@@ -400,6 +403,8 @@ Meaning execute commands, along the coords between the player and the entity tha
 CUSTOMABILITY====MATERIAL===={command}====10====1000====SELF====ALL====LEFTCLICKAIRRAYTRACELOCATIONBLOCK===={distance}
 Meaning execute commands, along the coords between the player and the entity that it passes through {x} {y} {z}
 And it will stop once it hits a SOLID block
+
+each one of the ray trace types, can use {uuid} for any entity that it passes through
 </code></pre>
 <h3>A few final addons onto the abilities!</h3>
 <p style="white-space: pre-line;">
@@ -451,6 +456,11 @@ dayRaceCommandExecution:
         the dayRaceCommandExecution is the command that is executed when the player is in the day, and the nightRaceCommandExecution is the command that is executed when the player is in the night
 
         Compared to the rest of this page, this ability uses {player} instead of {name} as the player name and {x} {y} {z} stay the same as the rest of the page 
+
+        There are also worldguard flags which are labeled as 
+
+        mrbase-potionandattributes [to stop the player from getting potion effects and attributes]
+        allow-mrabilities [to stop the player from using abilities]
     </p>
             </div>
         </div>  
