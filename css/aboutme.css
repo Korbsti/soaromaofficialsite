@@ -1,25 +1,17 @@
-.background {
-    /* The image used */
-    background-image: url("../media/background.jpg");
-    
-      /* Set a specific height */
-    min-height: 100vh;
-    
-    /* Create the parallax scrolling effect */
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-    background-size: cover;
-}
+
 
 body{
     margin: 0;
 }
 
+.mainpage{
+  width: 100%;
+}
+
 .mainpage > .inner {
     position: absolute;
     top: 30%;
-    width:100%;
+    width: 100%;
     height: auto;
     background-color: rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -37,6 +29,20 @@ body{
     animation: fadeIn 1s;
 }
 
+.background {
+  /* The image used */
+  background-image: url("../media/background.jpg");
+  
+    /* Set a specific height */
+  min-height: 100vh;
+  
+  /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
 .dropdown {
     display: flex;
     flex-direction: row;
