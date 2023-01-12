@@ -47,6 +47,8 @@ padding-top: 80px; /* Add some space for static header */
 max-width: 1200px; /* set max width for the container /
 margin: 0 auto; / center the container */
 padding: 20px;
+display: flex;
+flex-direction: column;
 }
 
 
