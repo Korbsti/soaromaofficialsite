@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mythical Races Wiki</title>
+        <link rel="stylesheet" href="./css/wikistyle.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css">
+        <link rel="icon" href="./media/logo.jpg" type="image/icontype">
+
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1>Mythical Races Wiki</h1>
+                <nav>
+                    <ul>
+                        <li><a href="./soaromasac.html">SoaromaSAC Wiki</a></li>
+                        <li><a href="./mrpremiumaddons.html">MR Premium Addons Wiki</a></li>
+                        <li><a href="https://ko-fi.com/korbsti">Donations</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCSgrqMXHaXPE1rV3s1geD-g">Youtube</a></li>
+                        <li><a href="https://discord.gg/GK3rmrze2Q">Discord</a></li>
+                        <li><a href="./matchmakerdashboard.html">Matchmaker Dashboard</a></li>
+                        <li><a href="./aboutme.html">About me/Projects</a></li>
+                        <li><a href="./index.html">Homepage</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="container">
+                <div>
+                    <h1>Mythical Races Wiki</h1>
+                    <p>This will include both premium and free version information</p>
+                </div>
+                <div>
+                    <h3>What is a race?</h3>
+                    <p style="white-space: pre-line">Essentially a race is a container consisting of a set of rules to follow,
+                         whether that be potion effects or attributes
+                        
+                        So how do we create a race? Or edit a race?
+                    
+                        Lets look at this race below us
+    
+                        Its race is defined as 'Human' and its display name is '&cHuman'
+    
+                        Meaning that this race will be called Human and will be displayed as red text when being referred to
+                        in-game, the display name can be something else entirely that is not 'Human' but the race will still be defined as Human
+    
+                        material is what the material for the plugin is, this can be anything from a book to a diamond sword,
+                         the material is what will be displayed in the GUI
+    
+                        Material names are from this link -> https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+                        Usually the material names are in all caps
+    
+                        Premium Version Users:
+                        The material has a little more options for you, such as the ability to add a custom model data to the item and the ability for a custom head to be used
+    
+                        It can be 'MATERIAL' just a regular material or
+    
+                        it can be 'MATERIAL:ID', id being the custom id, you can use a resource pack to get the id of the item you want
+    
+                        Or you can do this 'LINK;'
+    
+                        LINK can be something from this site
+    
+                        https://textures.minecraft.net/texture/5193c89d1df679854f33c2215247b676a159d5395392d0c61b8476f813d9edb0
+                        It is called "minecraft-url", something like that, AND make sure to have a SEMI COLON at the end so it would look something like this
+                        </p>
+                        <pre>
+                            <code class="yml">material: 'https://textures.minecraft.net/texture/5193c89d1df679854f33c2215247b676a159d5395392d0c61b8476f813d9edb0;' </code></pre>
+                        <pre>
+                            <code class="yml">
+    Human:
+       displayName: '&cHuman'
+       material: 'BOOK'
+       isSubRace: false
+       subRaceType: ''
+       treeSlot: 4
+       levelRequire: 0
+       guiPage: 1
+       slot: 11
+       lvlType: 'RUNNING'
+       maxLevel: 100
+       gainXP: 2
+       xpPerLevel: 24
+       lore:
+           - '&4----- &cHuman Race &4-----'
+           - '&cWell I think you know what a human is'
+           - ' '
+           - '&5----- Day Time Passive Effects -----'
+           - 'None'
+           - '&5----- Night Time Passive Effects -----'
+           - 'None'
+       dayPassivePotionEffects:
+           - 'null'
+       dayPassivePotionEffectsBase:
+           - 'null'
+       dayRaceDataPotion:
+           - 'null'
+       dayPassiveGenericAttributes:
+           - 'GENERIC_MOVEMENT_SPEED'
+       dayPassiveGenericAttributesBase:
+           - 0.1
+       dayRacePassiveAttributesLevel:
+           - 0.0
+       dayRaceDataAttribute:
+           - 'ALL Y > -1000 -1 ALL ALL ALL ALL'
+       nightPassivePotionEffects:
+           - 'null'
+       nightPassivePotionEffectsBase:
+           - 'null'
+       nightRaceDataPotion:
+           - 'null'
+       nightPassiveGenericAttributes:
+           - 'GENERIC_MOVEMENT_SPEED'
+       nightPassiveGenericAttributesBase:
+           - 0.1
+       nightRacePassiveAttributesLevel:
+           - 0.0
+       nightRaceDataAttribute:
+           - 'ALL Y > -1000 -1 ALL ALL ALL ALL'
+       executeCommandUponSwitching:
+           - 'null'
+        </code>
+                </pre>
+    
+    
+                <h3>Sub race, tree slots, and the rest</h3>
+                <p style="white-space: pre-line">A sub race is an evolution race of a base race, this race can be chosen from inside the race GUI
+                    To make a race a sub race of another race, we must change four things about the sub race (not the base race)
+    
+                    We turn isSubRace to true
+                    <pre><code class="yml">isSubRace: true</code></pre>
+                    Then we turn 
+                    <pre><code class="yml">subRaceType: 'Base Race Name'</code></pre>
+                    In this case we are making a sub race for the base race Human
+    
+                    , so we would do
+                    <pre><code class="yml">subRaceType: 'Human'</code></pre>
+    
+                    We have one more thing to change to make it a sub race, and that is the tree slot.
+                    <pre><code class="yml">treeSlot: x</code></pre>
+                    The tree slot determines which slot the sub race is going to be in the GUI when typing /races tree
+                    'x' is the slot of where the race will be in the GUI, the slots are numbered from 0 to 53, starting from the top left and going to the bottom right
+    
+                    . Remember we do not want any overlapping treeSlot inside the evolution tree of a given race
+    
+                    <pre><code class="yml">levelRequire: x</code></pre>
+                    This determines what level the player has to be, to be able to pick this specific race (If its a base race, no levelRequire is used because its a base race)
+    
+                </p>
+    
+    
+    
+                <p style="white-space: pre-line">We will now look at 'slot'
+                
+                Slot determines where the race is inside the /races gui, note that this only applies to BASE races, similar to the treeSlot, its a number from
+                0 - 53, and each slot has to be different for each base race to prevent overlapping of races inside the GUI</p>   
+                <pre><code class="yml">slot: x</code></pre>
+                <h3>Level, maxLevel, gainXP, xpPerLevel</h3>
+                <p style="white-space: pre-line">
+                    There are 13 types of levelling types which are as follows
+                    HUNTING, RUNNING, HARVESTING, BUILDER, FISHING, EXCAVATION, MINER, WOODCUTTER, TANKER, SWIMMING, FLYING, DIGGER, ARCHER
+    
+                    HUNTING is for killing mobs/animals
+                    RUNNING is for running around
+                    HARVESTING is for harvesting crops
+                    BUILDER is for placing blocks
+                    FISHING is for fishing
+                    EXCAVATION is for destroying everything
+                    MINER is for mining ores/stone/deepslate
+                    WOODCUTTER is for cutting down trees
+                    TANKER is for taking damage
+                    SWIMMING is for swimming
+                    FLYING is for flying
+                    DIGGER is for digging such as sand/gravel
+                    ARCHER is for killing mobs/animals with arrows
+    
+                    gainXP is the amount of XP you gain per action above is done
+                    Each action when completing it, you gain gainXP amount of XP
+    
+                    maxLevel is the max level you can get to
+    
+                    xpPerLevel is the amount of XP you need to level up
+                    Equation is as follows: to level up = players xp / xpPerLevel * current level
+    
+                    To have multiple levelling types, you can do the following
+                    <pre><code class="yml">lvlType: 'RUNNING, HUNTING'</code></pre>
+    
+                </p>   
+                <p style="white-space: pre-line">
+                    To determine swimming, running and flying we use this system, if the previous location before 600 is 'distance' greater than
+                the players location after 600, then the player has moved 'distance' amount of blocks, and we give them the XP for running, swimming or flying
+                </p>   
+    
+                <pre>
+                    <code class="yml">leveling: this is only for the type 'RUNNING'
+       
+        this is the distance number
+        distance: 10
+                            
+        every X amount of ticks, 20 ticks = 1 second, calculate distance
+        time: 600
+    </code>
+                </pre>
+    
+                <p style="white-space: pre-line">Lore is quite self explanitory, just remember to put ' and ' around the words properly as shown in the example way above</p>   
+                <h3>
+    
+                </h3>
+                <p style="white-space: pre-line">Now thats all out of the way, lets get onto the more tricky stuff, but its not that difficult so don't worry</p>   
+                <h3>Data And Other keys</h3>
+                <p style="white-space: pre-line">Lets look at a portion of some of the data potions</p>
+                <pre>
+                    <code class="yml">dayPassivePotionEffects:
+        - 'null'
+    dayPassivePotionEffectsBase:
+        - 'null'
+    dayRaceDataPotion:
+        - 'null'</code>
+                </pre>   
+                <p style="white-space: pre-line">Here we have three lists, consisting of dayPassivePotionEffects, dayPassivePotionEffectsBase and dayRaceDataPotion
+    
+                    dayPassivePotionEffects is the potion effect that is applied to the player when they are in the day
+    
+                    dayPassivePotionEffectsBase is the base potion effect amplifier that is applied to the player when they are in the day
+    
+                    dayRaceDataPotion is when and where to apply the effect to the player
+    
+    
+                    dayPassivePotionEffects can be one of these values
+                    https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionEffectType.html
+    
+                    dayPassivePotionEffectsBase can be any number, but do note that the higher the number, the more powerful the potion effect is
+                    and the beginning number starts at 0
+    
+                    So if we wanted to give the player speed 2 when they are in the day, we would do the following
+                    <pre><code class="yml">dayPassivePotionEffects:
+        - 'SPEED'
+    dayPassivePotionEffectsBase:
+        - 1</code>
+    </pre>    This is because the potions start at 0, so it will always be 1 less of the number you want
+    </p>
+    <p style="white-space: pre-line">Now lets look into data, its not as tricky as it seems so don't worry, just follow the format for it
+    
+        data initially looks like this 
+        <pre><code class="yml">- 'ALL Y > -1000 -1 ALL ALL ALL ALL'</code></pre>
+        Each piece of data is seperated by a space, and each piece of data is seperated by a comma (,) if there is more than one specifier, we will refer to each piece of data as an argument seperated by a space
+    
+        . The first piece of data is the biome, if you want to edit the biomes you can do the following
+        <pre><code class="yml">- 'BADLANDS,BEACH Y > -1000 -1 ALL ALL ALL ALL'</code></pre>
+        https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Biome.html - for biome names
+    
+    </p>
+       
+    <p style="white-space: pre-line">Now this effect will only be applied to the player when they are in the badlands and beach biome, and the Y level is greater than -1000
+        The second and third ALL represents a few things which are as follows
+        It represents the block that is specified in the third ALL, so if we wanted to make it so that the effect is only applied when the player is standing on a block of dirt, we would do the following
+        <pre><code class="yml">- 'BADLANDS,BEACH Y > -1000 -1 BOTTOM DIRT ALL ALL'</code></pre>
+    
+    
+        </p>
+        <p  style="white-space: pre-line">
+            
+            'ALL Y > -1000 -1 ALL ALL ALL ALL'
+            
+            First argument is BIOMES, ALL meaning ALL biomes, a biome name can be used within that first argument
+    
+            Second argument is Y, this always has to be Y - this indicates players Y axis
+    
+            Third argument is if players Y axis is greater than the number specified from the second argument, types are [>, <, =, >=, <=]
+    
+            fourth argument is the number that is related to the third argument, which specifies the Y axis
+    
+            fifth argument is what the amplifier should now be if the player isn't in the designated area -1 to remove POTION effects, attribute has to be set to another number for it as you cannot "remove" a attribute
+            
+            sixth argument is when to apply the effects if a certain block is nearby - types are [ALL, ABOVE, MID, BELOW, AROUND] you cannot use multiple for this argument, only one of these
+            
+            seventh argument is what blocks are nearby to apply the desired effect
+            
+            eighth argument is if a storm is occurring in the world then apply effect, types are [TRUE, FALSE, ALL]
+            
+            ninth argument is the 'world' the player is in, types are, [ALL, your worlds] can be separated using a space'
+            
+            To get the specific block, you can use the materials list here https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+    
+            There are also special types of arguments that can be used, are as follows
+    
+            (Do note that some of these are PREMIUM only, TEMPA and TEMPB are premium only)
+            'ALL Y > -1000 -1 VAMPIRE VAMPIRE ALL ALL' - this means apply effect if all blocks above the player to sky limit isnt a solid block
+            'ALL Y > -1000 -1 CUSTOM[num] [INSERT BLOCKS HERE] ALL ALL' - CUSTOM means, in X radius of blocks next to it, it can be CUSTOM10 or CUSTOM1 or even CUSTOM100 if you hate your server, replace [num] to search for a radius
+            'ALL Y > -1000 -1 LIGHTA[num] LIGHT ALL ALL' - this means apply effect if the light level is greater than the [num] next to it, example would be LIGHT6, now the limits are [0 - 14] in terms of levels
+            'ALL Y > -1000 -1 LIGHTB[num] LIGHT ALL ALL' - this means apply effect if the light level is lower than the [num] next to it, example would be LIGHT6, now the limits are [0 - 14] in terms of levels
+            'ALL Y > -1000 -1 TEMPA[num] TEMP ALL ALL' - this means apply effect if the temp level is higher than the [num] next to it
+            'ALL Y > -1000 -1 TEMPB[num] TEMP ALL ALL' - this means apply effect if the temp level is lower than the [num] next to it
+            
+            Now lets look at the attributes, attributes are as follows
+    
+                </p>
+                <pre><code class="yml">
+        GENERIC_MAX_HEALTH
+        GENERIC_KNOCKBACK_RESISTANCE
+        GENERIC_MOVEMENT_SPEED
+        GENERIC_ATTACK_DAMAGE
+        GENERIC_ATTACK_SPEED
+        GENERIC_ARMOR
+        GENERIC_ARMOR_TOUGHNESS
+        GENERIC_LUCK</code></pre>
+    
+                <p style="white-space: pre-line">Here we have the attributes and the following
+                </p>
+                <pre><code class="yml">
+                dayPassiveGenericAttributes:
+                    - 'GENERIC_MOVEMENT_SPEED'
+                dayPassiveGenericAttributesBase:
+                    - 0.1
+                dayRacePassiveAttributesLevel:
+                    - 0.0
+                dayRaceDataAttribute:
+                    - 'ALL Y > -1000 -1 ALL ALL ALL ALL'</code></pre>
+                    <p style="white-space: pre-line">dayPassiveGenericAttributes is the attribute that will be applied
+                         dayPassiveGenericAttributesBase is the base value of the attribute
+                          dayRacePassiveAttributesLevel is the level of the attribute - which in return will look like this
+                            <pre><code class="yml">dayPassiveGenericAttributesBase + dayRacePassiveAttributesLevel * players level = new value for that attribute</code></pre>
+                          dayRaceDataAttribute is the data that will be applied to the attribute</p>
+                    </p>
+                <h3>Final Part Of Wiki </h3>
+            <img src="./media/tip.PNG" alt="Random information or smthin">
+            <p style="white-space: pre-line">Here is a little tip, to properly align your races up, if you use notepad++, you will see a little line between the C and o in CommonElf or any race
+                If you match up that line inbetween the first two letters of your races then you will have a nice little alignment and the plugin won't break.
+    
+                timerCheckingPotionEffects is how often the plugin checks for potion effects, this is in seconds, so if you want it to check every 5 seconds, you would do the following
+                20 = 1 second
+                <pre><code class="yml">timerCheckingPotionEffects: 100</code></pre>
+            </p>
+            <img src="./media/connected.PNG">
+            <p style="white-space: pre-line">Each value corresponds to another like the picture above, for example the first value corresponds to the first value in the second line,
+                 and the third line
+    
+                 The attributes has 4 lists of values that are connected to eachother like above
+            </p>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/UvCX273nJJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <br>
+            <a href="./media/MythicalRacesHelper.zip" download>Download this for the race helper GUI</a> 
+            <p style="white-space: pre-line;">This is in BETA, incredibly new and ofc free to use, as of right now it only gives little tips if something may seem wrong with your race
+    
+                The ability helper button will not work because its still in development, it can only check one race at a time, so click "Race", upon clicking race, immediately click "Update" on the top right-ish of the race editor
+                
+                This is a .exe file so run it inside your temp folder that you will delete later, its a small program and nothing large, but still unzip the folder and run the program, once you are done editing a race, or make some changes,
+                 click "update" on the right of the race editor for the program to check the race to see if there are any small errors you might have missed,
+                 (Note this is not perfect, but it is good for catching the little things and helping you create the race and by no means is it pretty, so dont expect it to look nice :Cheebs: )</p>
+            
+        </div>  
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</html>

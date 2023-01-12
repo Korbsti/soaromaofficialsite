@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mythical Races Wiki</title>
+        <link rel="stylesheet" href="./css/wikistyle.css">
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/atom-one-dark.min.css">
+        <link rel="icon" href="./media/logo.jpg" type="image/icontype">
+
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <h1>SoaromaSAC Wiki </h1>
+                <nav>
+                    <ul>
+                        <li><a href="./mrpremiumaddons.html">MR Premium Addons Wiki</a></li>
+                        <li><a href="./mythicalraces.html">Mythical Races Wiki</a></li>
+                        <li><a href="https://ko-fi.com/korbsti">Donations</a></li>
+                        <li><a href="https://www.youtube.com/channel/UCSgrqMXHaXPE1rV3s1geD-g">Youtube</a></li>
+                        <li><a href="https://discord.gg/GK3rmrze2Q">Discord</a></li>
+                        <li><a href="./matchmakerdashboard.html">Matchmaker Dashboard</a></li>
+                        <li><a href="./aboutme.html">About me/Projects</a></li>
+                        <li><a href="./index.html">Homepage</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="container">
+                <p style="white-space:pre-line">
+                How do I disable the teleportation or event when a player is flagged?
+
+                The configuration option cancelEventIfHacking controls teleportation and events
+                ----------------
+                How do I know what each configuration is exceeded in-game?
+                
+                There is a configuration option called "debugMode" it will say what config option the player has exceeded in-game
+                ----------------
+                How do I unban a player?
+                
+                The command /sacunban (player)
+                ----------------
+                The anti-cheat isn't working?
+                
+                Either the player is in creative mode, the player has the permission sac.bypass or you are using a version that is 1.16 or below
+                ----------------
+                The player wasn't cheating and got flagged?
+                
+                Report to Korbsti immediately as it is most likely a false flag and a bug within the anti-cheat itself
+                ----------------
+                How do I turn up the violation count before a kick occurs?
+                
+                The configuration option violationKickNumUntilKick
+                ----------------
+                How do I enable spaced violation messages?
+                
+                The configuration option spacedViolationMessages has to be set to true
+                ----------------
+                Is there a way to disable the entire anti cheat just in case of emergency?
+                
+                yep, type /sacadmin
+                ---------------
+                Is there a way to change config options in game?
+                
+                Yes! The command /sacadmin
+                ---------------
+                Why is the jar file obfuscated?
+                
+                To prevent the checks from being easily bypassed, and optimization purposes
+                ---------------
+                 
+                ---------------
+                Why is that sometimes a player is flagged for fluidWalk on join or hitting when they are on land?
+                
+                This player has criticals enabled and the anti-cheat detected that
+                ---------------
+                Are there any skidded checks?
+                
+                None, I refuse to use skidded checks in SoaromaSAC
+                -----------
+                What do you use to make the jar file have lots of random letters when decompiling?
+                
+                ProGuard
+                -----------
+                How do I make this compatible with mcMMO?
+                
+                Set the following variables to:
+                reachBlockBreakNum: 200
+                checkAutoClicker: false or CPSUntilHacking: 30
+                -----------
+                Is this compatible with plugins that make you double jump or go really fast without speed effect or so?
+                
+                It is possible however many configurations will have to be changed resulting in an insensitive anti-cheat
+                -----------
+                Does SoaromaSAC use a player event or packets for movement checks?
+                
+                SoaromaSAC uses PacketPlayInFlying and PacketPlayInVehicleMove for movement checks, everything else uses events
+                -----------
+                A check is falsing?
+                
+                Each check usually goes by [check][type], example speedA, or speedB, Semi Prediction B etc
+                
+                You can go into main.yml and go to the specific section if where [check] is and there is usually a ending letter on each key which is [type]
+                
+                Extra* The [check] is what is inside cheat-names inside main.yml, you'll see a giant list of cheat check names, always type in lower caps when typing the permission in-game
+                
+                You can make that more insensitive or disable it
+            </p>
+            </div>
+        </div>  
+    </body>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="./aboutme.html">About</a>
+                <a href="https://discord.gg/GK3rmrze2Q">Discord Contact</a>
+            </div>
+            <div class="copyright">Copyright © 2023, Korbsti</div>
+        </div>
+    </footer>
+    
+</html>
